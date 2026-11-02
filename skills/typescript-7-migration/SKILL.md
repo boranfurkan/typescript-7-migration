@@ -116,6 +116,10 @@ Say which commands run on which version, and re-check when TypeScript 7.1 (with 
 - Run `tsc --noEmit` on 7.0. If anything stays on 6.0, also run `tsc6 --noEmit` and compare.
 - On small CI runners, `--checkers <n>` (default 4) caps the parallel type-checkers; `--builders <n>` caps parallel
   project builds under `-b`; `--singleThreaded` disables parallelism.
+- State the reason in plain words whenever any tool stays on 6.0: "TypeScript 7.0 ships without a compiler API;
+  a new, different API is planned for 7.1 (in beta as of 2026-11), so tools that import `typescript` as a library
+  (typescript-eslint, vue-tsc, ts-jest, ts-node, ts-patch transformers, `ts.createProgram` scripts) can't run on 7.0."
+  Name each affected tool in the repo and say it either stays on 6.0 via the alias or is replaced.
 - Report: the tsconfig changes, the code changes, which tools stay on 6.0 and why, and anything you couldn't
   verify (for example, no network for `npm install`).
 

@@ -33,6 +33,7 @@ Graders passed (LLM judge = Sonnet, 3 votes per grader), 2 runs per arm, one tab
 - **Same author:** the skill and the graders were written by the same person from the same release notes.
 - **One mechanism-specific grader:** it requires the `@typescript/typescript6` side-by-side mechanism specifically.
 - **Strict graders:** the two with-skill misses are judged strictness, not wrong answers. Haiku tooling grader 1 bundles "no API in 7.0", "new API in 7.1" and "ts-patch can't run" into one check; both answers got the substance right but omitted the 7.1 mention. Sonnet post-upgrade run 2 explained the `types` default and fixed it, but split `node`/`jest` across two tsconfigs, and the judge voted 1-2.
+- **Skill edited mid-evaluation:** after the first Haiku with-skill runs I added a line to SKILL.md telling the agent to state the "7.0 has no compiler API" reason explicitly, then re-ran Haiku on the tooling and upgrade cases. Scores did not improve (tooling 2/3, 2/3 again; upgrade 4/4, 3/4), so the table keeps the original runs. The Sonnet runs used the earlier SKILL.md wording.
 - **Facts date:** as of TypeScript 7.0, re-checked 2026-11-02 (7.1 was still in beta).
 
 The same author also made a [benchmark of a data-analysis skill](https://github.com/boranfurkan/trustworthy-data-analysis) where gains were much smaller.
