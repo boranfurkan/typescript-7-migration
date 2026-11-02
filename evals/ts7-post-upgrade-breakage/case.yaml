@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: ts7-post-upgrade-breakage
+expected_outcome: |
+  Two defaults changed in TypeScript 6.0 (kept in 7.0): `types` now defaults to [] (no automatic @types
+  inclusion) → list "types": ["node"] in tsconfig.json and ["node", "jest"] for the tests; `rootDir` now defaults to
+  the directory of tsconfig.json instead of being inferred from the inputs (src/) → set "rootDir": "./src" in
+  tsconfig.json (and override it, e.g. "rootDir": ".", in tsconfig.test.json) so output lands back in dist/server.js.
+context:
+  scaffold_script: place-files.sh

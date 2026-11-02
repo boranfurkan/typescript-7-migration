@@ -1,0 +1,20 @@
+{
+  "name": "typescript-7-migration",
+  "version": "0.1.0",
+  "description": "Upgrade projects to TypeScript 7 (native Go compiler) using the official release notes: tsconfig hard errors and new defaults, tooling that still needs the 6.0 API, and a safe staged path.",
+  "author": {
+    "name": "boranfurkan",
+    "url": "https://github.com/boranfurkan"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/boranfurkan/typescript-7-migration",
+  "repository": "https://github.com/boranfurkan/typescript-7-migration",
+  "keywords": [
+    "typescript",
+    "typescript-7",
+    "tsgo",
+    "migration",
+    "tsconfig",
+    "agent-skills"
+  ]
+}

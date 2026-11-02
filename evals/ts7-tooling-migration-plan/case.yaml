@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: ts7-tooling-migration-plan
+expected_outcome: |
+  7.0 has no compiler API (a new, different API is planned for 7.1). Everything here that loads TypeScript as a
+  library stays on 6.0: typescript-eslint (doesn't support TS 7; peer range <6.1), vue-tsc/Volar (Vue template checking,
+  needs the API), ts-patch transformers, and the ts.createProgram docs script. The official path is the
+  @typescript/typescript6 package (tsc6 + the 6.0 API), e.g. alias "typescript": "npm:@typescript/typescript6" for the
+  tools and add the 7.0 compiler under another name ("@typescript/native": "npm:typescript@^7.0.2") for plain tsc
+  checking. Move to 6.0 first and clear deprecations (with stableTypeOrdering) before relying on 7.0.
+context:
+  scaffold_script: place-files.sh

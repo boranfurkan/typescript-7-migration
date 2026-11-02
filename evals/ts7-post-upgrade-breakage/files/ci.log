@@ -1,0 +1,29 @@
+$ npx tsc -p tsconfig.json
+src/server.ts:4:14 - error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+
+4 const port = process.env.PORT ?? "8080";
+               ~~~~~~~
+
+Found 1 error in src/server.ts:4
+
+$ npx tsc -p tsconfig.test.json
+test/math.test.ts:3:1 - error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+
+3 describe("add", () => {
+  ~~~~~~~~
+
+test/math.test.ts:4:3 - error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+
+4   it("adds", () => expect(add(1, 2)).toBe(3));
+    ~~
+
+src/server.ts:4:14 - error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+
+Found 3 errors in 2 files.
+
+$ git stash && npx -p typescript@5.7 tsc -p tsconfig.json && ls dist; git stash pop
+math.d.ts  math.js  server.d.ts  server.js
+$ npx tsc -p tsconfig.json; ls dist
+src
+$ ls dist/src
+math.d.ts  math.js  server.d.ts  server.js

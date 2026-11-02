@@ -1,0 +1,11 @@
+{
+  "name": "typescript-7-migration",
+  "owner": { "name": "boranfurkan", "url": "https://github.com/boranfurkan" },
+  "plugins": [
+    {
+      "name": "typescript-7-migration",
+      "source": "./",
+      "description": "Upgrade projects to TypeScript 7 (native Go compiler) from the official release notes: tsconfig hard errors, changed defaults, tools that still need the 6.0 API, side-by-side setup."
+    }
+  ]
+}

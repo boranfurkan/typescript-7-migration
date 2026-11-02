@@ -1,0 +1,9 @@
+{
+  "name": "calc",
+  "main": "dist/server.js",
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2"
+  }
+}

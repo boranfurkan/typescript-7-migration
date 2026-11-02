@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: upgrade-node-service-to-ts7
+expected_outcome: |
+  Per the official 6.0/7.0 announcements: target es5, downlevelIteration, moduleResolution node, baseUrl and
+  esModuleInterop:false are hard errors in 7.0 → raise target, drop downlevelIteration, use nodenext (or bundler),
+  remove baseUrl and write paths as "./src/*", drop esModuleInterop:false and switch `import * as express` to a default
+  import. New defaults: rootDir = tsconfig directory (set "rootDir": "./src" or output moves to dist/src) and types = []
+  (list "node", "jest"). 7.0 ships no compiler API, so ts-node and ts-jest (which load the TypeScript API) won't work on
+  7.0 → keep them on 6.0 via @typescript/typescript6 / npm aliasing, or switch runners.
+context:
+  scaffold_script: place-files.sh

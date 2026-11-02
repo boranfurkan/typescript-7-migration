@@ -1,0 +1,21 @@
+{
+  "name": "storefront",
+  "private": true,
+  "scripts": {
+    "typecheck": "vue-tsc --noEmit",
+    "build": "vite build",
+    "lint": "eslint .",
+    "prepare": "ts-patch install -s",
+    "docs": "node scripts/gen-api-docs.mjs"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.2",
+    "vue-tsc": "^2.2.0",
+    "@vue/tsconfig": "^0.7.0",
+    "vite": "^6.0.0",
+    "eslint": "^9.17.0",
+    "typescript-eslint": "^8.18.0",
+    "ts-patch": "^3.3.0",
+    "typescript-transform-paths": "^3.5.2"
+  }
+}

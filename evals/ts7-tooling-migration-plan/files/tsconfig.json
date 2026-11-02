@@ -1,0 +1,10 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "bundler",
+    "paths": { "@/*": ["./src/*"] },
+    "plugins": [{ "transform": "typescript-transform-paths" }]
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue"]
+}
