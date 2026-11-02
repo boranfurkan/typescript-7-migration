@@ -2,7 +2,7 @@
 
 **Lets your coding agent upgrade projects to TypeScript 7 correctly, using facts from the official release notes
 instead of guesses.**
-Works with Claude Code, Codex, Cursor, Gemini CLI and any agent that reads [Agent Skills](https://agentskills.io) (`SKILL.md`).
+An [Agent Skills](https://agentskills.io) skill (`SKILL.md`). Tested in Claude Code; `npx skills` installs it for other agents that read Agent Skills, which we haven't tested.
 
 TypeScript 7.0 (July 2026) is the Go-native compiler: about 10× faster type-checking. It shipped after the training
 cutoff of today's models. They know the general direction (6.0 deprecations, "native port") but hedge or guess on
@@ -16,7 +16,43 @@ the details that decide whether your upgrade works:
   directory (output moves to `dist/src/`).
 - **How to run 6.0 and 7.0 side by side** with npm aliases.
 
-### Eval results
+## Install
+
+**Claude Code (plugin):**
+```
+/plugin marketplace add boranfurkan/typescript-7-migration
+/plugin install typescript-7-migration@typescript-7-migration
+```
+
+**Any agent supporting Agent Skills:**
+```bash
+npx skills add boranfurkan/typescript-7-migration
+```
+
+**Manual:** copy `skills/typescript-7-migration/` into your agent's skills folder (Claude Code: `~/.claude/skills/`).
+
+Then ask your agent something like *"upgrade this repo to TypeScript 7"* or *"why can't tsc find describe after
+upgrading?"*. In our evals it activated by itself in 11 of 12 runs.
+
+## Example
+
+> **You:** We bumped TypeScript from 5.7 to 7.0. Now tsc can't find `describe` or `process` even though
+> @types/jest and @types/node are installed, and the build moved to `dist/src/server.js`.
+
+With the skill, the agent names both silent default changes (`types` is now `[]`, `rootDir` is now the tsconfig's
+directory) and fixes them:
+
+```jsonc
+// tsconfig.json
+"rootDir": "./src",
+"types": ["node", "jest"]
+```
+
+## Eval results
+
+In offline evals the skill raised graders passed from 10/18 to 17/18 on Sonnet 5.5 and from 7/18 to 15/18 on Haiku 5.5.
+Small samples; read the caveats below.
+
 
 Graders passed (LLM judge = Sonnet, 3 votes per grader), 2 runs per arm, one table cell per run.
 
@@ -37,24 +73,6 @@ Graders passed (LLM judge = Sonnet, 3 votes per grader), 2 runs per arm, one tab
 - **Facts date:** as of TypeScript 7.0, re-checked 2026-11-02 (7.1 was still in beta).
 
 The same author also made a [benchmark of a data-analysis skill](https://github.com/boranfurkan/trustworthy-data-analysis) where gains were much smaller.
-
-## Install
-
-**Claude Code (plugin):**
-```
-/plugin marketplace add boranfurkan/typescript-7-migration
-/plugin install typescript-7-migration@typescript-7-migration
-```
-
-**Any agent supporting Agent Skills:**
-```bash
-npx skills add boranfurkan/typescript-7-migration
-```
-
-**Manual:** copy `skills/typescript-7-migration/` into your agent's skills folder (Claude Code: `~/.claude/skills/`).
-
-Then ask your agent something like *"upgrade this repo to TypeScript 7"* or *"why can't tsc find describe after
-upgrading?"*. The skill activates by itself.
 
 ## What the agent does with it
 
